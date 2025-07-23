@@ -41,3 +41,14 @@ added legality-constraints and domain-wide goals replicate the constraints and
 goal information mentioned implicitly in the instance generators of the IPC 2023
 learning track (which are also in the benchmark repository).
 
+**Note on childsnack-ipc23-learning**
+
+The instance generator for childsnack of the IPC 2023 learning track is not
+consistent with the base-case instances of the learning track. The generator
+produces instances where the number of bread portions, content portions, and
+*children* is the same. In the base cases however the number of bread portions,
+content portions, and *sandwiches* is the same. The constraints in
+`childsnack-ipc23-learning/domain.pddl` model the latter version, i. e. the
+number of sandwiches matches the number of bread portions and the number of
+content portions.
+
