@@ -7,6 +7,10 @@ paper *C. Grundke, G. Röger, M. Helmert. Formal Representations of Classical
 Planning Domains. In Proceedings of the 34th International Conference on
 Automated Planning and Scheduling (ICAPS 2024), pp. 239-248. 2024.*
 
+The extension to PDDL types has been introduced in the paper *C. Grundke, M.
+Helmert, G. Röger. Domain-Independent Instance Generation for Classical
+Planning. In Proceedings of the 22nd International Conference on Principles of
+Knowledge Representation and Reasoning (KR 2025). 2025.*
 
 ## Domain Syntax
 
@@ -51,4 +55,3 @@ content portions, and *sandwiches* is the same. The constraints in
 `childsnack-ipc23-learning/domain.pddl` model the latter version, i. e. the
 number of sandwiches matches the number of bread portions and the number of
 content portions.
-
