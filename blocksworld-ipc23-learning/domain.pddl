@@ -91,14 +91,8 @@
 (:axiom (illegal)
   (exists (?x ?y ?z) (and (on_g ?y ?x) (on_g ?z ?x) (not (= ?y ?z)))))
 
-(:axiom (illegal)
-  (not (forall (?x) (or (on-table_g ?x) (exists (?y) (on_g ?x ?y))))))
-
 (:axiom (illegal) 
   (exists (?x ?y) (and (on-table_g ?x) (on_g ?x ?y))))
-
-(:axiom (illegal)
-  (not (forall (?x) (or (clear_g ?x) (exists (?y) (on_g ?y ?x))))))
 
 (:axiom (illegal)
   (exists (?x ?y) (and (clear_g ?x) (on_g ?y ?x))))
