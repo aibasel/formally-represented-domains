@@ -6,7 +6,7 @@
           floor - object
          )
 
-(:predicates 
+(:predicates
 (origin ?person - passenger ?floor - floor)
 ;; entry of ?person is ?floor
 ;; inertia

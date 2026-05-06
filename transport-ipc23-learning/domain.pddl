@@ -102,7 +102,7 @@
   (:legality-axiom (illegal)
     (exists (?p - package ?x ?y - location)
             (and (at_g ?p ?x) (at_g ?p ?y) (not (= ?x ?y)))))
-  
+
   ;; the starting location and goal location of each package differ
   (:legality-axiom (illegal) (exists (?p - package ?l - location) (and (at ?p ?l)
                                                               (at_g ?p ?l))))
@@ -116,7 +116,7 @@
             (and (capacity ?v ?c1) (capacity ?v ?c2) (not (= ?c1 ?c2)))))
 
   ;; the transitive closure of predicate capacity-predecessor is a strict total
-  ;; order (irreflexive, transitive, connected) over the sizes 
+  ;; order (irreflexive, transitive, connected) over the sizes
   (:legality-axiom (less-than ?c1 ?c2 - size)
     (or (capacity-predecessor ?c1 ?c2)
         (exists (?c3 - size)
@@ -130,7 +130,7 @@
                             (and (not (= ?c1 ?c2))
                                  (not (less-than ?c1 ?c2))
                                  (not (less-than ?c2 ?c1)))))
-                
+
   ;; the predicate in is never true in the initial state
   (:legality-axiom (illegal) (exists (?p - package ?v - vehicle) (in ?p ?v)))
 
