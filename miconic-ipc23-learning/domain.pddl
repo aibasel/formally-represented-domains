@@ -33,7 +33,8 @@
 
 (:legality-predicate legal)
 
-(:domain-goal (forall (?p - passenger) (served ?p)))
+;(:domain-goal (forall (?p - passenger) (served ?p)))
+(:domain-goal (forall (?p - passenger) (imply (served_g ?p) (served ?p))))
 
 ;;stop and allow boarding
 
@@ -109,6 +110,9 @@
 (:legality-axiom (illegal) (exists (?f1 ?f2 - floor) (and (not (= ?f1 ?f2))
                                                  (lift-at ?f1)
                                                  (lift-at ?f2))))
+
+;; in the goal all passengers are served
+(:legality-axiom (illegal) (exists (?p - passenger) (not (served_g ?p))))
 
 )
 

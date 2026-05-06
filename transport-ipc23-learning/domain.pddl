@@ -96,7 +96,7 @@
     (exists (?l - locatable ?x ?y - location)
             (and (at ?l ?x) (at ?l ?y) (not (= ?x ?y)))))
 
-  ;; for each package, at_g is true for exactly one location
+  ;; in the goal each package is in exactly one location
   (:legality-axiom (illegal)
     (exists (?p - package) (not (exists (?x - location) (at_g ?p ?x)))))
   (:legality-axiom (illegal)

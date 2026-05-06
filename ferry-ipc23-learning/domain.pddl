@@ -68,7 +68,7 @@
    ;; previous axiom ensuring there is at least one location)
    (:legality-axiom (illegal) (forall (?x ?y - location) (= ?x ?y)))
 
-   ;; each car has exactly one goal location (i. e., at_g is true for exactly
+   ;; each car has exactly one goal location (i.e., at_g is true for exactly
    ;; one location for each car)
    (:legality-axiom (illegal) (exists (?c - car)
      (not (exists (?l - location) (at_g ?c ?l)))))

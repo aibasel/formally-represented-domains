@@ -25,6 +25,7 @@
     (notexist ?s - sandwich)
     (legal)
     (illegal)
+    (served_g ?c - child)
     (matching-child-sandwich ?c - child ?s - sandwich)
     (matching-sandwich-bread ?s - sandwich ?b - bread-portion)
     (matching-sandwich-content ?s - sandwich ?c - content-portion)
@@ -37,7 +38,8 @@
 
 (:legality-predicate legal)
 
-(:domain-goal (forall (?c - child) (served ?c)))
+;(:domain-goal (forall (?c - child) (served ?c)))
+(:domain-goal (forall (?c - child) (imply (served_g ?c) (served ?c))))
 
 (:action make_sandwich_no_gluten
 	 :parameters (?s - sandwich ?b - bread-portion ?c - content-portion)
@@ -270,5 +272,8 @@
 (:legality-axiom (illegal) (exists (?s - sandwich) (at_kitchen_sandwich ?s)))
 (:legality-axiom (illegal) (exists (?s - sandwich) (no_gluten_sandwich ?s)))
 (:legality-axiom (illegal) (exists (?s - sandwich ?t - tray) (ontray ?s ?t)))
+
+;; in the goal all children are served
+(:legality-axiom (illegal) (exists (?c - child) (not (served_g ?c))))
 
 )

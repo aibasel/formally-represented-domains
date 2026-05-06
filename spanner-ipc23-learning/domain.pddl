@@ -15,13 +15,15 @@
 	(loose ?n - nut)
   (legal)
   (illegal)
+  (tightened_g ?n - nut)
   (matching-nut-spanner ?n - nut ?s - spanner)
   (shed ?l - location)
   (gate ?l - location))
 
 (:legality-predicate legal)
 
-(:domain-goal (forall (?n - nut) (tightened ?n)))
+;(:domain-goal (forall (?n - nut) (tightened ?n)))
+(:domain-goal (forall (?n - nut) (imply (tightened_g ?n) (tightened ?n))))
 
 (:action walk
         :parameters (?start - location ?end - location ?m - man)
@@ -131,6 +133,9 @@
 
 ;; all nuts are loose
 (:legality-axiom (illegal) (exists (?n - nut) (not (loose ?n))))
+
+;; in the goal all nuts are tightened
+(:legality-axiom (illegal) (exists (?n - nut) (not (tightened_g ?c))))
 
 )
 

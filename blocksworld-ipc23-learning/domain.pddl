@@ -77,7 +77,11 @@
 (:legality-axiom (illegal)
   (exists (?x ?y) (and (clear ?x) (on ?y ?x))))
 
-;; axioms to encode task-specific goal information into the initial state
+;; at least one block lies on the table (preventing empty initial states)
+(:legality-axiom (illegal)
+  (forall (?x) (not (on-table ?x))))
+
+;; legality axioms to characterise instance-specific goals
 
 (:legality-axiom (above_g ?x ?y)
   (or (on_g ?x ?y)
@@ -96,6 +100,10 @@
 
 (:legality-axiom (illegal)
   (exists (?x ?y) (and (clear_g ?x) (on_g ?y ?x))))
+
+;; in the goal at least one block is on the table (preventing empty goals)
+(:legality-axiom (illegal)
+  (forall (?x) (not (on-table_g ?x))))
 
 )
 
