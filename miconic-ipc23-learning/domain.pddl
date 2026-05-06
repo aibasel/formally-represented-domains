@@ -63,50 +63,50 @@
   :precondition (and (lift-at ?f1) (above ?f2 ?f1))
   :effect (and (lift-at ?f2) (not (lift-at ?f1))))
 
-(:axiom (legal) (not (illegal)))
+(:legality-axiom (legal) (not (illegal)))
 
 ;; there is at least one passenger
-(:axiom (illegal) (not (exists (?p - passenger ?f - floor) (origin ?p ?f))))
+(:legality-axiom (illegal) (not (exists (?p - passenger ?f - floor) (origin ?p ?f))))
 
 ;; each passenger has exactly one origin
-(:axiom (illegal) (exists (?p - passenger)
+(:legality-axiom (illegal) (exists (?p - passenger)
   (not (exists (?f - floor) (origin ?p ?f)))))
-(:axiom (illegal) (exists (?p - passenger ?f1 ?f2 - floor)
+(:legality-axiom (illegal) (exists (?p - passenger ?f1 ?f2 - floor)
   (and (origin ?p ?f1) (origin ?p ?f2) (not (= ?f1 ?f2)))))
 
 ;; each passenger has exactly one destination
-(:axiom (illegal) (exists (?p - passenger)
+(:legality-axiom (illegal) (exists (?p - passenger)
   (not (exists (?f - floor) (destin ?p ?f)))))
-(:axiom (illegal) (exists (?p - passenger ?f1 ?f2 - floor)
+(:legality-axiom (illegal) (exists (?p - passenger ?f1 ?f2 - floor)
   (and (destin ?p ?f1) (destin ?p ?f2) (not (= ?f1 ?f2)))))
 
 ;; the predicate above defines a strict total order (irreflexive, transitive,
 ;; connected) over all floors
-(:axiom (illegal) (exists (?f - floor) (above ?f ?f)))
-(:axiom (illegal) (exists (?f1 ?f2 ?f3 - floor)
+(:legality-axiom (illegal) (exists (?f - floor) (above ?f ?f)))
+(:legality-axiom (illegal) (exists (?f1 ?f2 ?f3 - floor)
                           (and (above ?f1 ?f2)
                                (above ?f2 ?f3)
                                (not (above ?f1 ?f3)))))
-(:axiom (illegal) (exists (?f1 ?f2 - floor)
+(:legality-axiom (illegal) (exists (?f1 ?f2 - floor)
                           (and (not (= ?f1 ?f2))
                                (not (above ?f1 ?f2))
                                (not (above ?f2 ?f1)))))
 
 ;; no passenger is boarded (yet)
-(:axiom (illegal) (exists (?p - passenger) (boarded ?p)))
+(:legality-axiom (illegal) (exists (?p - passenger) (boarded ?p)))
 
 ;; the destination of each passenger is different from their origin
-(:axiom (illegal) (exists (?p - passenger ?f - floor)
+(:legality-axiom (illegal) (exists (?p - passenger ?f - floor)
                           (and (origin ?p ?f) (destin ?p ?f))))
 
 ;; no passenger is served (yet)
-(:axiom (illegal) (exists (?p - passenger) (served ?p)))
+(:legality-axiom (illegal) (exists (?p - passenger) (served ?p)))
 
 ;; lift-at is true for exactly one floor (the following axioms, together with
 ;; the axiom that ensures differing floors for origin and destin for each
 ;; passenger, ensure that there are at least two floors)
-(:axiom (illegal) (not (exists (?f - floor) (lift-at ?f))))
-(:axiom (illegal) (exists (?f1 ?f2 - floor) (and (not (= ?f1 ?f2))
+(:legality-axiom (illegal) (not (exists (?f - floor) (lift-at ?f))))
+(:legality-axiom (illegal) (exists (?f1 ?f2 - floor) (and (not (= ?f1 ?f2))
                                                  (lift-at ?f1)
                                                  (lift-at ?f2))))
 

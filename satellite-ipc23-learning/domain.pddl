@@ -67,43 +67,43 @@
                       (pointing ?s ?d))
    :effect (have_image ?d ?m))
   
-  (:axiom (legal) (not (illegal)))
+  (:legality-axiom (legal) (not (illegal)))
 
   ;; there is at least one satellite (as a side effect, the following axiom
   ;; also ensures that there is at least one direction)
-  (:axiom (illegal) (not (exists (?s - satellite ?d - direction) (pointing ?s ?d))))
+  (:legality-axiom (illegal) (not (exists (?s - satellite ?d - direction) (pointing ?s ?d))))
 
   ;; there are at least two directions (the following axiom relies on the
   ;; previous axiom that ensures there exists at least one direction)
-  (:axiom (illegal) (forall (?d1 ?d2 - direction) (= ?d1 ?d2)))
+  (:legality-axiom (illegal) (forall (?d1 ?d2 - direction) (= ?d1 ?d2)))
  
   ;; every satellite must point to exactly one direction 
-  (:axiom (illegal) (exists (?s - satellite) (not (exists (?d - direction) (pointing ?s ?d)))))
-  (:axiom (illegal) (exists (?s - satellite ?d1 ?d2 - direction)
+  (:legality-axiom (illegal) (exists (?s - satellite) (not (exists (?d - direction) (pointing ?s ?d)))))
+  (:legality-axiom (illegal) (exists (?s - satellite ?d1 ?d2 - direction)
     (and (pointing ?s ?d1) (pointing ?s ?d2) (not (= ?d1 ?d2)))))
 
   ;; all satellites have power available
-  (:axiom (illegal) (exists (?s - satellite) (not (power_avail ?s))))
+  (:legality-axiom (illegal) (exists (?s - satellite) (not (power_avail ?s))))
 
   ;; every instrument has exactly one calibration target
-  (:axiom (illegal) (exists (?i - instrument) (not (exists (?d - direction) (calibration_target ?i ?d)))))
-  (:axiom (illegal) (exists (?i - instrument ?d1 ?d2 - direction)
+  (:legality-axiom (illegal) (exists (?i - instrument) (not (exists (?d - direction) (calibration_target ?i ?d)))))
+  (:legality-axiom (illegal) (exists (?i - instrument ?d1 ?d2 - direction)
     (and (calibration_target ?i ?d1) (calibration_target ?i ?d2) (not (= ?d1 ?d2)))))
 
   ;; every instrument is on exactly one satellite
-  (:axiom (illegal) (exists (?i - instrument) (not (exists (?s - satellite) (on_board ?i ?s)))))
-  (:axiom (illegal) (exists (?i - instrument ?s1 ?s2 - satellite)
+  (:legality-axiom (illegal) (exists (?i - instrument) (not (exists (?s - satellite) (on_board ?i ?s)))))
+  (:legality-axiom (illegal) (exists (?i - instrument ?s1 ?s2 - satellite)
     (and (on_board ?i ?s1) (on_board ?i ?s2) (not (= ?s1 ?s2)))))
 
   ;; every satellite has at least one instrument
-  (:axiom (illegal) (exists (?s - satellite) (not (exists (?i - instrument) (on_board ?i ?s)))))
+  (:legality-axiom (illegal) (exists (?s - satellite) (not (exists (?i - instrument) (on_board ?i ?s)))))
 
   ;; every instrument has at least one mode
-  (:axiom (illegal) (exists (?i - instrument) (not (exists (?m - mode) (supports ?i ?m)))))
+  (:legality-axiom (illegal) (exists (?i - instrument) (not (exists (?m - mode) (supports ?i ?m)))))
 
   ;; every mode supported by at least one instrument
-  (:axiom (illegal) (exists (?m - mode) (not (exists (?i - instrument) (supports ?i ?m)))))
+  (:legality-axiom (illegal) (exists (?m - mode) (not (exists (?i - instrument) (supports ?i ?m)))))
 
   ;; have_image_g is true for at least one pair of direction, mode
-  (:axiom (illegal) (not (exists (?d - direction ?m - mode) (have_image_g ?d ?m))))
+  (:legality-axiom (illegal) (not (exists (?d - direction ?m - mode) (have_image_g ?d ?m))))
 )

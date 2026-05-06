@@ -73,75 +73,75 @@
       )
   )
 
-  (:axiom (legal) (not (illegal)))
+  (:legality-axiom (legal) (not (illegal)))
 
   ;; there is at least one package (as a side effect, the following axiom also
   ;; ensures there is at least one location)
-  (:axiom (illegal) (not (exists (?p - package ?l - location) (at ?p ?l))))
+  (:legality-axiom (illegal) (not (exists (?p - package ?l - location) (at ?p ?l))))
 
   ;; there is at least one vehicle
-  (:axiom (illegal) (not (exists (?v - vehicle ?l - location) (at ?v ?l))))
+  (:legality-axiom (illegal) (not (exists (?v - vehicle ?l - location) (at ?v ?l))))
 
   ;; the predicate road is symmetric
-  (:axiom (illegal) (exists (?x ?y - location)
+  (:legality-axiom (illegal) (exists (?x ?y - location)
                             (and (road ?x ?y) (not (road ?y ?x)))))
 
   ;; the predicate road is irreflexive
-  (:axiom (illegal) (exists (?x - location) (road ?x ?x)))
+  (:legality-axiom (illegal) (exists (?x - location) (road ?x ?x)))
 
   ;; for each locatable, predicate at is true for exactly one location
-  (:axiom (illegal)
+  (:legality-axiom (illegal)
     (exists (?l - locatable) (not (exists (?x - location) (at ?l ?x)))))
-  (:axiom (illegal)
+  (:legality-axiom (illegal)
     (exists (?l - locatable ?x ?y - location)
             (and (at ?l ?x) (at ?l ?y) (not (= ?x ?y)))))
 
   ;; for each package, at_g is true for exactly one location
-  (:axiom (illegal)
+  (:legality-axiom (illegal)
     (exists (?p - package) (not (exists (?x - location) (at_g ?p ?x)))))
-  (:axiom (illegal)
+  (:legality-axiom (illegal)
     (exists (?p - package ?x ?y - location)
             (and (at_g ?p ?x) (at_g ?p ?y) (not (= ?x ?y)))))
   
   ;; the starting location and goal location of each package differ
-  (:axiom (illegal) (exists (?p - package ?l - location) (and (at ?p ?l)
+  (:legality-axiom (illegal) (exists (?p - package ?l - location) (and (at ?p ?l)
                                                               (at_g ?p ?l))))
 
   ;; for each vehicle, the predicate capacity is true for exactly one size
-  (:axiom (illegal)
+  (:legality-axiom (illegal)
     (exists (?v - vehicle)
             (not (exists (?c - size) (capacity ?v ?c)))))
-  (:axiom (illegal)
+  (:legality-axiom (illegal)
     (exists (?v - vehicle ?c1 ?c2 - size)
             (and (capacity ?v ?c1) (capacity ?v ?c2) (not (= ?c1 ?c2)))))
 
   ;; the transitive closure of predicate capacity-predecessor is a strict total
   ;; order (irreflexive, transitive, connected) over the sizes 
-  (:axiom (less-than ?c1 ?c2 - size)
+  (:legality-axiom (less-than ?c1 ?c2 - size)
     (or (capacity-predecessor ?c1 ?c2)
         (exists (?c3 - size)
                 (and (capacity-predecessor ?c1 ?c3) (less-than ?c3 ?c2)))))
-  (:axiom (illegal) (exists (?c - size) (less-than ?c ?c)))
-  (:axiom (illegal) (exists (?c1 ?c2 ?c3 - size)
+  (:legality-axiom (illegal) (exists (?c - size) (less-than ?c ?c)))
+  (:legality-axiom (illegal) (exists (?c1 ?c2 ?c3 - size)
                             (and (less-than ?c1 ?c2)
                                  (less-than ?c2 ?c3)
                                  (not (less-than ?c1 ?c3)))))
-  (:axiom (illegal) (exists (?c1 ?c2 - size)
+  (:legality-axiom (illegal) (exists (?c1 ?c2 - size)
                             (and (not (= ?c1 ?c2))
                                  (not (less-than ?c1 ?c2))
                                  (not (less-than ?c2 ?c1)))))
                 
   ;; the predicate in is never true in the initial state
-  (:axiom (illegal) (exists (?p - package ?v - vehicle) (in ?p ?v)))
+  (:legality-axiom (illegal) (exists (?p - package ?v - vehicle) (in ?p ?v)))
 
   ;; the road-graph is connected
-  (:axiom (reachable ?x ?y - location)
+  (:legality-axiom (reachable ?x ?y - location)
     (or (road ?x ?y) (exists (?z - location)
                              (and (reachable ?x ?z) (road ?z ?y)))))
-  (:axiom (illegal) (exists (?l1 ?l2 - location) (not (reachable ?l1 ?l2))))
+  (:legality-axiom (illegal) (exists (?l1 ?l2 - location) (not (reachable ?l1 ?l2))))
 
   ;; each vehicle has a capacity of at least one
-  (:axiom (illegal)
+  (:legality-axiom (illegal)
           (exists (?v - vehicle ?c - size)
                   (and (capacity ?v ?c)
                        (not (exists (?cp - size) (capacity-predecessor ?cp ?c))))))
