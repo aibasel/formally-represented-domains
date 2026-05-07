@@ -224,9 +224,10 @@
 
 ;; all tiles except the first row are painted in the goal
 (:legality-axiom (illegal) (exists (?x ?y - tile)
-  (and (down ?x ?y) (not (exists (?c - color) (painted_g ?x ?c))))))
-(:legality-axiom (illegal) (exists (?x - tile ?c - color)
-  (and (not (exists (?y - tile) (down ?x ?y))) (painted_g ?x ?c))))
+  (and (down ?x ?y) (not (exists (?c - color) (painted_g ?y ?c))))))
+(:legality-axiom (illegal) (exists (?x - tile)
+  (and (forall (?y - tile) (not (down ?y ?x)))
+       (exists (?c - color) (painted_g ?x ?c)))))
 
 ;; chessboard pattern (neighboring tiles do not share a color; the axiom relies
 ;; on there being only two colors)
