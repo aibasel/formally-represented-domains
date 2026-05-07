@@ -239,7 +239,7 @@
                        (matching-no-gluten-child-content ?ch ?co))))))
 (:legality-axiom (illegal)
   (exists (?br - bread-portion)
-          (and (no_gluten_content ?br) (not (exists (?ch - child)
+          (and (no_gluten_bread ?br) (not (exists (?ch - child)
                        (matching-no-gluten-child-bread ?ch ?br))))))
 (:legality-axiom (illegal)
   (exists (?co - content-portion)
