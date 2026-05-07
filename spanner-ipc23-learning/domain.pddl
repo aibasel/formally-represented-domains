@@ -53,7 +53,7 @@
 (:legality-axiom (illegal) (not (exists (?s - spanner ?l - location) (at ?s ?l))))
 
 ;; there is exactly one man
-(:legality-axiom (illegal) (not (exists (?m) (man ?m))))
+(:legality-axiom (illegal) (forall (?m1 ?m2 - man) (not (= ?m1 ?m2))))
 (:legality-axiom (illegal) (exists (?m1 ?m2 - man) (not (= ?m1 ?m2))))
 
 ;; the man is at the shed
@@ -135,7 +135,7 @@
 (:legality-axiom (illegal) (exists (?n - nut) (not (loose ?n))))
 
 ;; in the goal all nuts are tightened
-(:legality-axiom (illegal) (exists (?n - nut) (not (tightened_g ?c))))
+(:legality-axiom (illegal) (exists (?n - nut) (not (tightened_g ?n))))
 
 )
 
