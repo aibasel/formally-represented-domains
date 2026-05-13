@@ -6,7 +6,7 @@
 
 (define (domain childsnack)
 (:requirements :typing :negative-preconditions)
-(:types child bread-portion content-portion sandwich tray place)
+(:types child bread-portion content-portion sandwich tray place - object)
 (:constants kitchen - place)
 
 (:predicates

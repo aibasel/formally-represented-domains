@@ -95,8 +95,8 @@
   (and (clear ?t) (or (robot-at ?r ?t) (painted ?t ?c)))))
 (:legality-axiom (illegal) (exists (?t - tile)
   (and (not (clear ?t))
-       (not (exists (?r) (robot-at ?r ?t)))
-       (not (exists (?c) (painted ?t ?c))))))
+       (not (exists (?r - robot) (robot-at ?r ?t)))
+       (not (exists (?c - color) (painted ?t ?c))))))
 
 ;; no tile is painted in the initial state
 (:legality-axiom (illegal) (exists (?t - tile ?c - color) (painted ?t ?c)))
@@ -161,7 +161,7 @@
 ;; the mapping from col, row pairs to tiles is a function
 (:legality-axiom (illegal) (exists (?c ?r - tile)
   (and (col ?c) (row ?r)
-       (not (exists (?x) (and (colOf ?x ?c) (rowOf ?x ?r)))))))
+       (not (exists (?x - tile) (and (colOf ?x ?c) (rowOf ?x ?r)))))))
 (:legality-axiom (illegal) (exists (?x ?y ?c ?r - tile)
   (and (colOf ?x ?c) (rowOf ?x ?r)
        (colOf ?y ?c) (rowOf ?y ?r)
