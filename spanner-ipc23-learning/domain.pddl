@@ -88,10 +88,10 @@
 
 ;; each location has at most one incoming link and at most one outgoing link
 (:legality-axiom (illegal)
-  (exists (?l ?lx ?ly - location)
+  (exists (?l ?l1 ?l2 - location)
           (and (not (= ?l1 ?l2)) (link ?l1 ?l) (link ?l2 ?l))))
 (:legality-axiom (illegal)
-  (exists (?l ?lx ?ly - location)
+  (exists (?l ?l1 ?l2 - location)
           (and (not (= ?l1 ?l2)) (link ?l ?l1) (link ?l ?l2))))
 
 ;; the shed is the only location with no incoming links (together with previous
